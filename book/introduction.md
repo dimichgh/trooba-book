@@ -1,4 +1,4 @@
-# About The Book
+# Building Scalable Pipelines With Trooba Framework
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/trooba/branding/master/images/trooba_trans_bg.png" alt="Trooba logo" width="332" /><br /><br />

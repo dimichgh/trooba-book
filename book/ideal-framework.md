@@ -2,9 +2,9 @@
 
 In this series we are going to explain the reasons behind architecture of eBay open-source pipeline framework called Trooba.
 
-## Why do we need frameworks?
+## Why do we need a framework?
 
-One of the goals while building enterprise platform is to minimize the energy spent on maintaining a platform while supporting growing number of applications and teams that use it. The factors that allow to achieve this goal define how well the platform can scale and would usually lead to a creation or use of specific frameworks.
+One of the goals while building enterprise platform is to minimize the energy spent on maintaining a platform while supporting growing number of applications and teams that use it. This is usually accomplished with the use of various frameworks.
 
 The framework defines guidelines on how things should be done; which allows to maintain the same structure of the system and keeps it recognizable to other developers and reduces maintenance costs.
 
