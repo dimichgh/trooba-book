@@ -1,0 +1,11 @@
+[{
+    "title": "Building Scalable Pipelines with Trooba framework",
+    "docs": [
+        "Introduction",
+        "Ideal Framework",
+        "Separation Of Concerns",
+        "Trooba API",
+        "Pipelines Everywhere!",
+        "Pipeline Lifecycle"
+    ]
+}]

@@ -1,6 +1,4 @@
-# trooba-book
-
-On-line mini-book describing design solutions building pipelines using Trooba pipeline framework.
+# About The Book
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/trooba/branding/master/images/trooba_trans_bg.png" alt="Trooba logo" width="332" /><br /><br />

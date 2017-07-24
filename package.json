@@ -1,0 +1,32 @@
+{
+  "name": "trooba-book",
+  "version": "1.0.0",
+  "description": "On-line minibook describing design solutions building pipelines using Trooba pipeline framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimichgh/trooba-book.gi.git"
+  },
+  "keywords": [
+    "trooba",
+    "framework",
+    "pipe",
+    "pipeline",
+    "service",
+    "middleware",
+    "hooks",
+    "grpc",
+    "http",
+    "rest",
+    "soap"
+  ],
+  "author": "Dmytro Semenov <dimichsdg@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimichgh/trooba-book.gi/issues"
+  },
+  "homepage": "https://github.com/dimichgh/trooba-book.gi#readme"
+}
