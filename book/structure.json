@@ -1,10 +1,10 @@
 [{
     "title": "Trooba Book",
     "docs": [
-        "Introduction",
+        "Scalable Pipelines",
         "Ideal Framework",
         "Separation Of Concerns",
-        "Trooba API",
+        "Using Trooba",
         "Pipelines Everywhere!",
         "Pipeline Lifecycle"
     ]
