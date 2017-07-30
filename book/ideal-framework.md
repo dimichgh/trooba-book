@@ -6,17 +6,17 @@ In this series we are going to explain the reasons behind architecture of eBay o
 
 One of the goals while building enterprise platform is to minimize the energy spent on maintaining a platform while supporting growing number of applications and teams that use it. This is usually accomplished with the use of various frameworks.
 
-The framework defines guidelines on how things should be done; which allows to maintain the same structure of the system and keeps it recognizable to other developers and reduces maintenance costs.
+The framework defines uniform guidelines on how things should be done; which allows to maintain the same structure of the system, keeps it recognizable to other developers and reduces maintenance costs.
 
-By taking the execution of repetitive tasks on itself it minimizes the amount of code that needs to written by an application developer and thus reducing the number of bugs.
+The application developers no longer need to architect/implement their way of doing service calls and focus their time on the application business logic. The frameworks can also allow to structure service data flow into a separate testable components. These components are usually build by platform or framework team and then distributed to other teams that use them in their service data flows.
 
 The framework needs to be simple enough to guarantee a quick on-boarding of new developers and teams, provide tools for fast debugging and troubleshooting. It is better be based on open standards and allow to form a developer community around to set it on self-sustainable path via contributions.
 
-There are already many frameworks out there that organize how things should be done in Node.JS. Marko, React or Angular define guidelines how UI should be done. The frontend and backend service guidelines are defined by Express, Hapi, Kraken-js. Microservice infrastructure can be built using Hemera or Senecajs.
+There are already many frameworks out there that organize how things should be done. Marko, React or Angular define rules on how UI should be done. The frontend and backend services are based on Express, Hapi, Kraken-js, etc. Microservice infrastructure can be built using Hemera or Senecajs.
 
-One of the important areas for the platform team is to provide ways to manage data flows.
+Let's look at a simple example to understand how frameworks simplify things.
 
-## What it takes to make an http service call?
+### What it takes to make an http service call?
 
 * Create an HTTP client
 * Initiate a call
@@ -27,7 +27,7 @@ Here’s high level diagram:
 
 ![service call diagram](images/service-call-diagram.png)
 
-## Will this scale?
+### Will this scale?
 
 What if you need to …
 
@@ -42,7 +42,7 @@ Should we ask every application developer to do this job?
 
 The answer is obvious - framework should do this automatically and transparently to the user.
 
-## What is available?
+### What is available?
 
 * http and https core modules that are not generic, low level, bound to http protocol and still require a lot of work from a developer.
 * request is http module, very popular still requires a lot of work from a developer.
@@ -52,9 +52,9 @@ The answer is obvious - framework should do this automatically and transparently
 * Hemera is similar to seneca and goes higher with abstracting transport into NATS framework supported by multiple languages, almost perfect, but still hard to build pipelines.
 * gRPC is low latency, streaming support, multiplexing channels, protocol oriented, still no way to build pipelines.
 
-Some concerns listed among benefits should not be considered as a bad side of the framework being reviewed. Maybe this is how it should be, we do not want to have a huge framework that does all kinds of things possible as it goes agains modular approach. All of the above modules/frameworks represent a good deal of effort by the owners and community as a whole that should not be wasted. They all have very good parts that can be used by other modules to avoid re-inventing the wheel.
+Some concerns listed among benefits should not be considered as a bad side of the frameworks being reviewed. Maybe this is how it should be, we do not want to have a framework that does all kinds of things possible as it goes agains modular approach. What is missing is some generic way of connecting all good parts and defining structure for these connections that would allow to scale to many applications. 
 
-## What do we want our framework to be?
+### What do we want our framework to be?
 
 What we want is to have a framework that would allows us to easily connect or use the above mentioned frameworks and modules.
 
@@ -68,7 +68,7 @@ What we want is to have a framework that would allows us to easily connect or us
 * Able to use good parts provided by above frameworks
 * Be an extension to other frameworks, not always a replacement
 
-## What use-cases do we want to support?
+### What use-cases do we want to support?
 
 * Pub/Sub
 * Request/Response
@@ -76,7 +76,7 @@ What we want is to have a framework that would allows us to easily connect or us
 * Request stream/Response
 * Request stream/Response stream
 
-## Why not use a popular middleware pattern?
+### Why not use a popular middleware pattern?
 
 ![service call diagram](images/service-call-diagram-pattern.png)
 

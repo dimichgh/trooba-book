@@ -1,4 +1,4 @@
-# Trooba API
+# Using Trooba
 
 In this chapter we are going to explore Trooba API and build some generic pipelines. Trooba is generic enough and does not impose any restrictions on how it should be used. It does provide a minimal set of artifacts and defines life cycle, a basic request/response and streaming support to demonstrate how it can be used, but it does not assume any structure for the request/response or data objects.
 
@@ -17,9 +17,7 @@ Trooba defines two types of handlers, but does not limit to define more. The typ
 * Generic is handler that performs some specific tasks and passes control to the next in the pipeline or can reverse the flow by throwing the error or starting the response. For example, oauth handler can get a security token form some token minting service and attach it to the request for the services that require security token.
 * Transport is almost the same as a handler, but it usually connects the pipe to the external component through some protocol like http, TCP or more high level as gRPC.
 
-## Pipeline API
-
-### Building a pipe
+## Building a pipe
 
 ```js
 const Trooba = require('trooba');
@@ -35,7 +33,7 @@ pipe.create(context).request(request, (err, response) => {
 });
 ```
 
-### Defining a handler
+## Defining a handler
 
 ```js
 module.exports = function handler(pipe, config) {
@@ -54,7 +52,7 @@ module.exports = function handler(pipe, config) {
 };
 ```
 
-### Defining an http transport
+## Defining an http transport
 
 ```js
 module.exports = function transport(pipe, config) {
