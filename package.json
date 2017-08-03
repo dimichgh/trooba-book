@@ -1,6 +1,6 @@
 {
   "name": "trooba-book",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "On-line minibook describing design solutions building pipelines using Trooba pipeline framework",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
