@@ -7,7 +7,7 @@ Other use-cases are possible like pub/sub with one way transmission or transform
 
 The differences are defined by transport, its position in the pipeline (at the start or end of the pipe) and execution order of handlers.
 
-## The service invocation lifecycle (Client API)
+## The service invocation lifecycle
 
 The service invocation is always initiated by application code which is already running in the specific context that can be injected into the pipeline context to make sure the context is propagated to the downstream services.
 
@@ -36,7 +36,7 @@ The service invocation is always initiated by application code which is already 
     * Completion
         * Should be marked by either response or some other event in case of streams (data === undefined)
 
-## The service endpoint lifecycle (Service API)
+## The service endpoint lifecycle
 
 The service endpoint is any http/soap/grpc/websocket/etc service that accepts requests from the external world and executes some logic based on request type, path and other request parameters. The most popular one is express or hapi frameworks that provide this type of functionality.
 
