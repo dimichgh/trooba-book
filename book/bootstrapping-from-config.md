@@ -22,7 +22,7 @@ The update phase is optional and used when the configuration used for the pipes 
 
 A platform developer can define his own bootstrap module or layer on top of the existing one that understands the platform specific configuration infrastructure.
 
-## Configuration requirements
+## Configuration
 
 ### Profiles
 
