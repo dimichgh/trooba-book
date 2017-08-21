@@ -15,8 +15,8 @@ The transports can be abstracted from the platform artifacts while context compo
 The possible context carriers:
 
 - Cookies for web applications
-- Headers for service REStful applications
-- Metadata for gRPC applications
+- Headers for service RESTful applications and clients
+- Metadata for gRPC applications and clients
 
 Now we are going to implement an http transport and context for a RESTful service invocation. You can use this example as a base to implement a context for any other transport.
 
@@ -24,7 +24,7 @@ The http context component would serialize context data into http headers for th
 
 The context component should be injected into transport via configuration.
 
-### Transport configuration:
+### Transport configuration
 
 ```json
 "http-transport": {
@@ -36,22 +36,22 @@ The context component should be injected into transport via configuration.
 }
 ```
 
-### Transport implementation:
+### Transport implementation
 
 ```js
-const contextProviders = {};
-
 module.exports = function transport(pipe, config) {
-    let context;
-    if (config.context && typeof config.context === 'string') {
-        context = contextProviders[config.context] || require(config.context);
+    if (config && config.context &&
+    pipe.store && !pipe.store.contextProvider) {
+        pipe.store.contextProvider = typeof config.context === 'string' ?
+            require(config.context) :
+            config.context;
     }
 
     pipe.on('request', request => {
         if (context) {
             // serialize context
             request.headers = request.headers || {};
-            context.serialize(pipe.context, request.headers);
+            pipe.store.contextProvider.serialize(pipe.context, request);
         }
         // continue http request invocation here
         Wreck.request(request.method,
@@ -67,7 +67,7 @@ module.exports = function transport(pipe, config) {
                 response.body = body;
                 // de-serialize context
                 if (context) {
-                    context.deserialize(response.headers, pipe.context);
+                    pipe.store.contextProvider.deserialize(response, pipe.context);
                 }
                 pipe.respond(response);
             });
@@ -79,23 +79,20 @@ module.exports = function transport(pipe, config) {
 ### Context component implementation
 
 ```js
-const Querystring = require('querystring');
 module.exports = {
-    serialize(sourceContext, targetContext) {
-        const context = Object.keys(sourceContext).reduce((memo, name) => {
+    serialize(context, requestContext) {
+        const target = Object.keys(context).reduce((memo, name) => {
             if (name.charAt(0) !== '$') {
-                memo[name] = sourceContext[name];
+                memo[name] = context[name];
             }
             return memo;
         }, {});
 
-        targetContext['X-COMP-CONTEXT'] = Querystring.stringify(context);
+        requestContext.headers['X-COMP-CONTEXT'] = JSON.stringify(target);
     },
 
-    deserialize(sourceContext, targetContext) {
-        const contextString = sourceContext['X-COMP-CONTEXT'];
-        const context = Querystring.parse(contextString);
-        Object.assign(targetContext, context);
+    deserialize(responseContext, context) {
+        Object.assign(context, JSON.parse(responseContext.headers['X-COMP-CONTEXT']);
     }
 };
 ```
