@@ -1,5 +1,7 @@
 # trooba-book
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/trooba/trooba-book.svg)](https://greenkeeper.io/)
+
 On-line mini-book describing design solutions building pipelines using Trooba pipeline framework.
 
 <p align="center">
